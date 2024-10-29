@@ -7,8 +7,8 @@
 
 body {
     font-family: 'Roboto', sans-serif;
-    background-color: #f4f4f9;
-    color: #333;
+    background-color: #121212;
+    color: #e0e0e0;
     line-height: 1.6;
     display: flex;
     justify-content: center;
@@ -19,20 +19,20 @@ body {
 .container {
     text-align: center;
     padding: 20px;
-    background: #fff;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    background: #1e1e1e;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
     border-radius: 8px;
 }
 
 h1 {
     font-size: 3em;
     margin-bottom: 0.5em;
-    color: #2c3e50;
+    color: #bb86fc;
 }
 
 p {
     font-size: 1.2em;
-    color: #7f8c8d;
+    color: #b0b0b0;
 }
 
 a {
@@ -41,7 +41,7 @@ a {
     padding: 10px 20px;
     font-size: 1em;
     color: #fff;
-    background-color: #3498db;
+    background-color: #bb86fc;
     border: none;
     border-radius: 5px;
     text-decoration: none;
@@ -49,5 +49,5 @@ a {
 }
 
 a:hover {
-    background-color: #2980b9;
+    background-color: #9b59b6;
 }
