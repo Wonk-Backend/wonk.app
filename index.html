@@ -11,6 +11,36 @@
     <div class="container" style="width: 100%; height: 100%;">
         <h1>Wonk Studios</h1>
         <p>wonk.app 3.0.0 is not ready to go yet. Stay tuned.</p>
+        <p>See our update info</p>
+        <img src="https://wonk.app/resources/site/Images/Screenshot 2024-10-30 073054.png">
+    <div class="tabs"></div>
+        <button class="tablinks" onclick="openTab(event, 'Screenshot')">Downtime</button>
+        <button class="tablinks" onclick="openTab(event, 'Logo')">Update</button>
+    </div>
+
+    <div id="Screenshot" class="tabcontent">
+        <img src="https://wonk.app/resources/site/Images/Screenshot 2024-10-30 073054.png" alt="Screenshot">
+    </div>
+
+    <div id="Logo" class="tabcontent" style="display:none;">
+        <img src="https:///wonk.app/resources/site/Images/Screenshot 2024-10-30 073409.png" alt="Logo">
+    </div>
+
+    <script>
+    function openTab(evt, tabName) {
+        var i, tabcontent, tablinks;
+        tabcontent = document.getElementsByClassName("tabcontent");
+        for (i = 0; i < tabcontent.length; i++) {
+            tabcontent[i].style.display = "none";
+        }
+        tablinks = document.getElementsByClassName("tablinks");
+        for (i = 0; i < tablinks.length; i++) {
+            tablinks[i].className = tablinks[i].className.replace(" active", "");
+        }
+        document.getElementById(tabName).style.display = "block";
+        evt.currentTarget.className += " active";
+    }
+    </script>
     </div>
 </body>
 </html>
