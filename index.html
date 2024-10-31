@@ -21,8 +21,13 @@
             document.body.style.backgroundImage = 'none';
             const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *):not(#loading-screen):not(#loading-screen *)');
             allElements.forEach(element => {
-                element.styles.cssText = '';
+                element.style.cssText = '';
             });
+            // Disable the stylesheet
+            const stylesheet = document.querySelector('link[rel="stylesheet"]');
+            if (stylesheet) {
+                stylesheet.disabled = true;
+            }
             }
 
             window.addEventListener('load', function() {
