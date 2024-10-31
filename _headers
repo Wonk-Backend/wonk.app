@@ -1,0 +1,8 @@
+/index.html
+  Cache-Control: max-age=3600
+
+/styles.css
+  Cache-Control: max-age=3600
+
+/resources/site/*
+  Cache-Control: max-age=31536000
