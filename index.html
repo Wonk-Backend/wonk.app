@@ -17,21 +17,21 @@
 
         <script>
             function loadBasicHTML() {
-                document.getElementById('loading-screen').style.display = 'none';
-                document.body.style.backgroundImage = 'none';
-                const allElements = document.querySelectorAll('*');
-                allElements.forEach(element => {
-                    element.style.cssText = '';
-                });
+            document.getElementById('loading-screen').style.display = 'none';
+            document.body.style.backgroundImage = 'none';
+            const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *)');
+            allElements.forEach(element => {
+                element.style.cssText = '';
+            });
             }
 
             window.addEventListener('load', function() {
-                const backgroundImage = new Image();
-                backgroundImage.src = 'resources/site/Images/divbg1.png';
-                backgroundImage.onload = function() {
-                    document.getElementById('loading-screen').style.display = 'none';
-                    document.body.style.backgroundImage = `url(${backgroundImage.src})`;
-                };
+            const backgroundImage = new Image();
+            backgroundImage.src = 'resources/site/Images/divbg1.png';
+            backgroundImage.onload = function() {
+                document.getElementById('loading-screen').style.display = 'none';
+                document.body.style.backgroundImage = `url(${backgroundImage.src})`;
+            };
             });
         </script>
         <div class="container">
@@ -42,7 +42,7 @@
             <button>See the announcement</button>
             </a>
         </div>
-        <div style="position: absolute; bottom: 0; width: 100%; text-align: center;">
+        <div id="site-info" style="position: absolute; bottom: 0; width: 100%; text-align: center;">
             <h6>Adrian Ray LeDeaux registered this domain name on May 10 2023</h6>
             <h6>This DNS record was registered on November 1st 2024</h6>
             <h6>Wonk Studios is a common law trademark of Wonk Studios</h6>
