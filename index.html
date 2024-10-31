@@ -19,7 +19,7 @@
             function loadBasicHTML() {
             document.getElementById('loading-screen').style.display = 'none';
             document.body.style.backgroundImage = 'none';
-            const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *)');
+            const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *):not(#loading-screen):not(#loading-screen *)');
             allElements.forEach(element => {
                 element.styles.cssText = '';
             });
