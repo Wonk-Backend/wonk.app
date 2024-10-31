@@ -19,7 +19,8 @@
             function loadBasicHTML() {
             document.getElementById('loading-screen').style.display = 'none';
             document.body.style.backgroundImage = 'none';
-            const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *):not(#loading-screen):not(#loading-screen *)');
+            const allElements = document.querySelectorAll('*:not(#site-info):not(#site-info *):not(#loading-screen):not(#loading-screen *)P');
+            document.body.style.backgroundImage = 'none';
             allElements.forEach(element => {
                 element.style.cssText = '';
             });
