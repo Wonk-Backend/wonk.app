@@ -8,13 +8,48 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div class="container">
+    <div class="container" id="announcementContainer">
         <h1>Wonk Studios</h1>
         <p>wonk.app 3.0.0 is not ready to go yet. Stay tuned.</p>
         <hr style="margin-top: 10px; margin-bottom: 10px; visibility: hidden;">
         <a href="https://github.com/orgs/Wonk-studios/discussions/4">
         <button>See the announcement</button>
         </a>
+        <button id="devButton">Or if you're a dev...</button>
+    </div>
+    <div class="container" id="loginContainer" style="display: none;">
+        <h2>Login</h2>
+        <form id="loginForm">
+            <div class="form-group">
+                <label for="username">Username</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Login</button>
+            </div>
+        </form>
+        <button id="showSignUpButton">Sign Up</button>
+    </div>
+    <div class="container" id="signUpContainer" style="display: none;">
+        <h2>Sign Up</h2>
+        <form id="signUpForm">
+            <div class="form-group">
+                <label for="signUpUsername">Username</label>
+                <input type="text" id="signUpUsername" name="username" required>
+            </div>
+            <div class="form-group">
+                <label for="signUpPassword">Password</label>
+                <input type="password" id="signUpPassword" name="password" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Sign Up</button>
+            </div>
+        </form>
+        <button id="showLoginButton">Back to Login</button>
     </div>
     <div style="position: absolute; bottom: 0; width: 100%; text-align: center;">
         <h6>Adrian Ray LeDeaux registered this domain name on May 10 2023</h6>
@@ -22,5 +57,79 @@
         <h6>Wonk Studios is a common law trademark of Wonk Studios</h6>
         <h6>Copyright © Wonk Studios 2024. All rights reserved.</h6>
     </div>
+    <script>
+        document.getElementById('devButton').addEventListener('click', () => {
+            document.getElementById('announcementContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        });
+
+        document.getElementById('showSignUpButton').addEventListener('click', () => {
+            document.getElementById('loginContainer').style.display = 'none';
+            document.getElementById('signUpContainer').style.display = 'block';
+        });
+
+        document.getElementById('showLoginButton').addEventListener('click', () => {
+            document.getElementById('signUpContainer').style.display = 'none';
+            document.getElementById('loginContainer').style.display = 'block';
+        });
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/login', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    const data = await response.json();
+                    localStorage.setItem('token', data.token);
+                    alert('Login successful');
+                    // Hide login form and show user panel or another page
+                    document.getElementById('loginContainer').style.display = 'none';
+                    // You can redirect to the user panel or another page here
+                } else {
+                    alert('Invalid username or password');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+
+        document.getElementById('signUpForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            const username = document.getElementById('signUpUsername').value;
+            const password = document.getElementById('signUpPassword').value;
+
+            try {
+                const response = await fetch('http://localhost:3000/api/auth/register', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ username, password })
+                });
+
+                if (response.ok) {
+                    alert('Sign up successful');
+                    // Hide sign up form and show login form
+                    document.getElementById('signUpContainer').style.display = 'none';
+                    document.getElementById('loginContainer').style.display = 'block';
+                } else {
+                    alert('Sign up failed');
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                alert('An error occurred. Please try again.');
+            }
+        });
+    </script>
 </body>
 </html>
