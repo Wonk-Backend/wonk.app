@@ -17,4 +17,5 @@ COPY . .
 EXPOSE 3000
 
 # Start the application
-CMD ["node", "server.js"]
+CMD ["node", "https://wonk.app/server/server.js"]
+CMD ["node", "/workspaces/wonk.app/server/server.js"]
