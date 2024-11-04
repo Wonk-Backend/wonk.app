@@ -31,6 +31,7 @@ router.post('/register', async (req, res) => {
     fs.writeFileSync(subscriberConfPath, JSON.stringify(initialConfig, null, 2));
 
     res.status(201).send('[AUTH] [Process: Register] User registered with username: ' + username);
+    alert('WARNING: All accounts, including developer and admin accounts will expire in 5 days until the update fully releases. This is to deter anyone from attempting to create an account.')
 });
 
 // Login endpoint
