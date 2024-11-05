@@ -28,7 +28,7 @@
             const username = document.getElementById('username').value;
             const password = document.getElementById('password').value;
 
-            const response = await fetch('/api/auth/register', {
+            const response = await fetch('http://localhost:3000/api/auth/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
@@ -37,9 +37,9 @@
             });
 
             if (response.ok) {
-                alert('User registered successfully');
+                window.location.href = 'https://wonk.app/server/pages/result/user/register/success';
             } else {
-                alert('Failed to register user');
+                window.location.href = 'https://wonk.app/server/pages/result/failure/';
             }
         });
     </script>
