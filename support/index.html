@@ -6,41 +6,77 @@
     <title>Support - Wonk Studios</title>
     <link rel="stylesheet" href="../styles.css">
     <style>
-        #chat-container { width: 300px; margin: 20px auto; border: 1px solid #ccc; padding: 10px; }
-        #chat-box { border: 1px solid #ccc; padding: 10px; height: 200px; overflow-y: scroll; }
-        #user-input { width: 100%; padding: 10px; margin-top: 10px; }
-        .message { margin: 10px 0; }
-        .user { text-align: right; }
-        .bot { text-align: left; }
+        body { font-family: Arial, sans-serif; background-color: #121212; color: #e0e0e0; margin: 0; padding: 0; }
+        header { background-color: #333; color: #fff; padding: 10px 0; text-align: center; }
+        main { padding: 20px; }
+        .container { max-width: 600px; margin: 0 auto; }
+        section { margin-bottom: 20px; }
+        ul { list-style-type: none; padding: 0; } /* Remove default list styling */
+        li { margin-bottom: 10px; }
+        #faq-container { max-width: 600px; margin: 0 auto; }
+        #chat-container { position: fixed; bottom: 20px; right: 20px; width: 300px; border: 1px solid #444; border-radius: 5px; background-color: #1e1e1e; box-shadow: 0 0 10px rgba(0, 0, 0, 0.5); }
+        #chat-box { border: 1px solid #444; border-radius: 5px; padding: 10px; height: 300px; overflow-y: scroll; background-color: #2c2c2c; }
+        #input-container { display: flex; padding: 10px; border-top: 1px solid #444; background-color: #1e1e1e; }
+        #user-input { flex: 1; padding: 10px; border: 1px solid #444; border-radius: 5px; background-color: #2c2c2c; color: #e0e0e0; }
+        .message { margin: 10px 0; padding: 10px; border-radius: 5px; color: #fff; }
+        .user { text-align: right; background-color: #333; }
+        .bot { text-align: left; background-color: #444; }
+        .accordion { cursor: pointer; padding: 10px; border: none; text-align: left; outline: none; transition: 0.4s; background-color: #333; color: #fff; }
+        .panel { padding: 0 10px; display: none; background-color: #1e1e1e; overflow: hidden; }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
 <body>
-    <header>
-        <h1>Support</h1>
-    </header>
     <main>
-        <section>
+
+        <div class="container" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 100%;">
+            <header>
+                <h1>Wonk Studios</h1>
+            </header>
+            <section>
             <h2>Contact Us</h2>
             <p>If you need assistance, please reach out to our support team through one of the following methods:</p>
             <ul>
-                <li>Email: <a href="mailto:support@wonk.app">support@wonk.app</a></li>
-                <li>Live Chat: Available 24/7 on our website</li>
+            <li>Email: <a href="mailto:support@wonk.app">support@wonk.app</a></li>
+            <li>Live Chat: Available 24/7 on our website</li>
             </ul>
-        </section>
-        <section>
+            </section>
+            <section id="faq-container">
             <h2>Frequently Asked Questions</h2>
-            <h3>How do I reset my password?</h3>
+            <button class="accordion">How do I reset my password?</button>
+            <div class="panel">
             <p>To reset your password, click on the "Forgot Password" link on the login page and follow the instructions.</p>
-            <h3>Where can I find my order history?</h3>
+            </div>
+            <button class="accordion">Where can I find my order history?</button>
+            <div class="panel">
             <p>Your order history can be found in the "My Account" section after logging in.</p>
-            <h3>How do I contact customer service?</h3>
+            </div>
+            <button class="accordion">How do I contact customer service?</button>
+            <div class="panel">
             <p>You can contact customer service via email, phone, or live chat as listed above.</p>
-        </section>
-        <section id="chat-container">
-            <h2>Chat with Support</h2>
+            </div>
+            </section>
+        </div>
+        <div id="chat-container">
+            <button id="chat-toggle" style="width: 100%; padding: 10px; background-color: #333; color: #fff; border: none; border-radius: 5px;">Chat with Support</button>
+            <div id="chat-content" style="display: none;">
             <div id="chat-box"></div>
-            <input type="text" id="user-input" placeholder="Type a message..." />
-        </section>
+            <div id="input-container">
+                <input type="text" id="user-input" placeholder="Type a message..." />
+            </div>
+            </div>
+        </div>
+        <script>
+            document.getElementById('chat-toggle').addEventListener('click', function() {
+            const chatContent = document.getElementById('chat-content');
+            if (chatContent.style.display === 'none' || chatContent.style.display === '') {
+                chatContent.style.display = 'block';
+            } else {
+                chatContent.style.display = 'none';
+            }
+            });
+        </script>
+        </div>
     </main>
     <footer>
         <p>&copy; 2023 Wonk Studios. All rights reserved.</p>
@@ -71,7 +107,7 @@
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
-                    'Authorization': `Bearer YOUR_OPENAI_API_KEY`
+                    'Authorization': process.env.OPENAI_API_KEY
                 },
                 body: JSON.stringify({
                     prompt: userInput,
@@ -83,6 +119,18 @@
             const botResponse = data.choices[0].text.trim();
             addMessage(botResponse, 'bot');
         }
+
+        $(document).ready(function() {
+            $(".accordion").click(function() {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        });
     </script>
 </body>
 </html>
