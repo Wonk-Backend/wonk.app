@@ -7,5 +7,5 @@
     "openai": "^4.71.1",
     "passport": "^0.7.0",
     "passport-local": "^1.0.0"
-  },
+  }
 }
